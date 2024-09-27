@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\Label;
 
 class CustomerController extends Controller
 {
@@ -28,7 +29,27 @@ class CustomerController extends Controller
         }
     }
 
+    public function getList(Request $request){
+        try{
+            $query = DB::table('customers');
+            $query->where(function($query) use ($request) {
+                $search = '%' . $request->search . '%';
+                $query->orWhere(DB::raw("CONCAT(first_name, ' ', last_name)"), 'like', $search);
+                $query->orWhere('last_name', 'like', $search);
+                $query->orWhere('email', 'like', $search);
+                $query->orWhere('phone_number', 'like', $search);
+                $query->orWhere('zip_code', 'like', $search);
+            });
 
+            $data['customers'] = $query->orderBy('first_name')
+                                       ->limit(100)
+                                       ->get(['id', DB::raw("CONCAT(first_name, ' ', last_name) as Label")]);
+             return $this->sendResponse("List fetched successfully", $data, 200);
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $this->handleException($e);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -153,4 +174,5 @@ class CustomerController extends Controller
             return $this->handleException($e);
         }
     }
+
 }

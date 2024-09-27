@@ -242,5 +242,24 @@ class ProductController extends Controller
             return $this->handleException($e);
         }
     }
+    public function getList(Request $request){
+        try{
+            $query = DB::table('products');
+
+            $query->where(function($query) use ($request) {
+            $search = '%' . $request->search . '%';
+            $query->orWhere('name', 'like', $search);
+            });
+
+            $data['products'] = $query->orderBy('name')
+                          ->limit(20)
+                          ->get(['id', 'name as Label', 'stock', 'price']);
+
+             return $this->sendResponse("List fetched successfully", $data, 200);
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $this->handleException($e);
+        }
+    }
 
 }

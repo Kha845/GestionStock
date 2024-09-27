@@ -43,6 +43,7 @@ Route::group(['middleware'=>'auth'], function($routes){
         Route::get('/{id}',[CustomerController::class,'show']);
         Route::put('/{id}',[CustomerController::class,'update']);
         Route::delete('/{id}',[CustomerController::class,'destroy']);
+        Route::post('/getList',[CustomerController::class,'getList']);
 
     });
      //la gestion des produits
@@ -53,6 +54,7 @@ Route::group(['middleware'=>'auth'], function($routes){
         Route::get('/{id}',[ProductController::class,'show']);
         Route::put('/{id}',[ProductController::class,'update']);
         Route::delete('/{id}',[ProductController::class,'destroy']);
+        Route::post('/getList',[ProductController::class,'getList']);
 
     });
 
