@@ -110,8 +110,8 @@ const ProductEdit = () =>{
     <Card>
         <CardContent>
         
-            <Typography variant="h2" gutterBottom>
-                Edition de Produit
+            <Typography variant="h2" gutterBottom className='text-left'>
+                Editer  Produit
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <Grid container spacing={2}>
@@ -123,7 +123,7 @@ const ProductEdit = () =>{
                                 <TextField
                                     {...field}
                                     label="Product Name"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     id="name"
                                     margin="normal"
@@ -145,7 +145,7 @@ const ProductEdit = () =>{
                                 <TextField
                                     {...field}
                                     label="Categorie"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     id="category_id"
                                     margin="normal"
@@ -171,7 +171,7 @@ const ProductEdit = () =>{
                                 <TextField
                                     {...field}
                                     label="Stock"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     id="stock"
                                     margin="normal"
@@ -189,7 +189,7 @@ const ProductEdit = () =>{
                                 <TextField
                                     {...field}
                                     label="Price"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     id="price"
                                     margin="normal"
@@ -206,7 +206,7 @@ const ProductEdit = () =>{
                                 component="img"
                                 height="auto"
                                 image={imageUrl}
-                                alt="Description de l'image" // Ajoutez une description alternative pour l'accessibilité
+                                alt="Image produit" // Ajoutez une description alternative pour l'accessibilité
                             />
                         </Card>
                     )}
@@ -216,7 +216,7 @@ const ProductEdit = () =>{
                             render={({ field }) => (
                                 <TextField
                                     label="Image"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     id="image"
                                     type="file"

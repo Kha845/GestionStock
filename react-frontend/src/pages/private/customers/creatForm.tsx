@@ -52,7 +52,7 @@ const CustomerCreate = () =>{
     <Card>
         <CardContent>
             <Typography variant="h2" gutterBottom>
-                Création de Client
+                Créer Client
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <Grid container spacing={2}>
@@ -64,7 +64,7 @@ const CustomerCreate = () =>{
                                 <TextField
                                     {...field}
                                     label="Prénom"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     margin="normal"
                                     error={!!errors.first_name}
@@ -82,7 +82,7 @@ const CustomerCreate = () =>{
                                 <TextField
                                     {...field}
                                     label="Nom de famille"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     margin="normal"
                                     error={!!errors.last_name}
@@ -99,7 +99,7 @@ const CustomerCreate = () =>{
                                 <TextField
                                     {...field}
                                     label="Numéro de téléphone"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     margin="normal"
                                     error={!!errors.phone_number}
@@ -116,7 +116,7 @@ const CustomerCreate = () =>{
                                 <TextField
                                     {...field}
                                     label="Email"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     margin="normal"
                                     error={!!errors.email}
@@ -133,7 +133,7 @@ const CustomerCreate = () =>{
                                 <TextField
                                     {...field}
                                     label="Adresse"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     margin="normal"
                                     error={!!errors.adresse}
@@ -150,7 +150,7 @@ const CustomerCreate = () =>{
                                 <TextField
                                     {...field}
                                     label="Code postal"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     margin="normal"
                                     error={!!errors.zip_code}
@@ -159,8 +159,6 @@ const CustomerCreate = () =>{
                             )}
                         />
                     </Grid>
-                   
-                   
                 </Grid>
                 <Button sx={{ mt:2 }} type="submit" variant="contained" color="success" >
                     Enregistrer
@@ -169,7 +167,7 @@ const CustomerCreate = () =>{
                  variant="contained" color="primary" onClick={()=>{
                     navigate(-1)
                  }}>
-                    Back
+                    Retour
                 </Button>
             </form>
         </CardContent>

@@ -15,10 +15,10 @@ export default class ProductStore {
     rowData: GridRowsProp[] = [];
     columns: GridColDef[] = [
         { field: 'id', headerName: 'ID', width: 50},
-        { field: 'name', headerName: 'Name', width: 150 },
+        { field: 'name', headerName: 'Nom produit', width: 150 },
         { field: 'category_id', headerName: 'Categorie', width: 150 },
         { field: 'stock', headerName: 'Stock', width: 150, },
-        { field: 'price', headerName: 'Price', width: 250, },
+        { field: 'price', headerName: 'Prix', width: 250, },
         { field: 'image', headerName: 'Image', width: 100, },
         { 
             field: 'actions', 
@@ -170,7 +170,6 @@ export default class ProductStore {
         }
     }
     
-
 //view
 
 getData = async (id: number | string ) =>{
@@ -269,5 +268,32 @@ updateData = async (id: number | string, postData: any) => {
             dialogText: "Are you sure you want to delete this item"
             }
         )
+    }
+    getlist = async (postData: any) =>{
+        try {
+            
+            const response = await axios.post(this.BASE_URL + '/getList', postData,{
+                headers: {
+                    'Authorization': `Bearer ${this.rootStore.authStore.token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log("HTTP Status:", response.status);
+    
+            const data = response.data;
+            console.log(data)
+            if (data.error) {
+
+                this.rootStore.handleError(response.status, data.message, data);
+    
+                return Promise.reject(new Error(data.message));
+    
+            } else {
+                return Promise.resolve(data.data.products);
+            }
+    
+        } catch (error: any) {
+            this.rootStore.handleError(419,'something went wrong',error)
+        }
     }
 }

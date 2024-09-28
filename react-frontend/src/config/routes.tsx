@@ -10,6 +10,10 @@ import Products from '../pages/private/products'
 import ProductList from '../pages/private/products/list'
 import ProductCreate from '../pages/private/products/creatForm'
 import ProductEdit from '../pages/private/products/edit'
+import Orders from '../pages/private/orders'
+import OrderList from '../pages/private/orders/list'
+import OrderCreate from '../pages/private/orders/creatForm'
+import OrderView from '../pages/private/orders/view'
 const routes = [
     {path: "/", element: <Navigate to = "login"/>},
 
@@ -26,6 +30,11 @@ const routes = [
             {path: "", element: <ProductList />},
             {path: "create", element: <ProductCreate/>},
             {path: "edit/:id", element: <ProductEdit />}
+        ]},
+        {path: "orders", element: <PrivateRoute element= {<Orders />}/>, children: [
+            {path: "", element: <OrderList />},
+            {path: "create", element: <OrderCreate/>},
+            {path: "view/:id", element: <OrderView/>},
         ]},
     ]},
     {path: "*", element: <Navigate to = "/"/>},

@@ -76,8 +76,8 @@ const CustomerEdit = () => {
     return (
         <Card>
             <CardContent>
-                <Typography variant="h5" gutterBottom>
-                    Édition de Client
+                <Typography variant="h5" gutterBottom className='text-left'>
+                    Éditer Client
                 </Typography>
                 <form onSubmit={handleSubmit(onSubmit)} noValidate>
                     <Grid container spacing={2}>
@@ -89,7 +89,7 @@ const CustomerEdit = () => {
                                     <TextField
                                         {...field}
                                         label="Prénom"
-                                        variant="outlined"
+                                        variant="filled"
                                         fullWidth
                                         margin="normal"
                                         error={!!errors.first_name}
@@ -107,7 +107,7 @@ const CustomerEdit = () => {
                                     <TextField
                                         {...field}
                                         label="Nom de famille"
-                                        variant="outlined"
+                                        variant="filled"
                                         fullWidth
                                         margin="normal"
                                         error={!!errors.last_name}
@@ -125,7 +125,7 @@ const CustomerEdit = () => {
                                     <TextField
                                         {...field}
                                         label="Numéro de téléphone"
-                                        variant="outlined"
+                                        variant="filled"
                                         fullWidth
                                         margin="normal"
                                         error={!!errors.phone_number}
@@ -143,7 +143,7 @@ const CustomerEdit = () => {
                                     <TextField
                                         {...field}
                                         label="Email"
-                                        variant="outlined"
+                                        variant="filled"
                                         fullWidth
                                         margin="normal"
                                         error={!!errors.email}
@@ -161,7 +161,7 @@ const CustomerEdit = () => {
                                     {...field}
                                     id='adresse'
                                     label="Adresse"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     margin="normal"
                                     error={!!errors.adresse}
@@ -179,7 +179,7 @@ const CustomerEdit = () => {
                                     <TextField
                                         {...field}
                                         label="Code postal"
-                                        variant="outlined"
+                                        variant="filled"
                                         fullWidth
                                         margin="normal"
                                         error={!!errors.zip_code}

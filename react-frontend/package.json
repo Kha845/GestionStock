@@ -24,12 +24,14 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.2",
+    "react-to-print": "^2.15.1",
     "styled-components": "^6.1.13",
     "yup": "^1.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "@mui/x-data-grid-pro": "^7.18.0",
+    "@types/lodash": "^4.17.9",
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",

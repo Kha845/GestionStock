@@ -73,11 +73,11 @@ const ProductCreate = () =>{
                     formData.append(key, data[key])
                 })
                 formData.append('image', data.image[0]);
-                
                 const resMessage = await createData(formData);
         
                 console.log(resMessage);
-    
+                reset();
+                formData.delete('image');
             } catch (error: any) {
                 console.log(error)
             }
@@ -88,8 +88,8 @@ const ProductCreate = () =>{
     return (
     <Card>
         <CardContent>
-            <Typography variant="h2" gutterBottom>
-                Création de Produit
+            <Typography variant="h2" gutterBottom  className='text-left'>
+                Créer  Produit
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <Grid container spacing={2}>
@@ -101,7 +101,7 @@ const ProductCreate = () =>{
                                 <TextField
                                     {...field}
                                     label="Product Name"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     id="name"
                                     margin="normal"
@@ -123,7 +123,7 @@ const ProductCreate = () =>{
                                 <TextField
                                     {...field}
                                     label="Categorie"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     id="category_id"
                                     margin="normal"
@@ -149,7 +149,7 @@ const ProductCreate = () =>{
                                 <TextField
                                     {...field}
                                     label="Stock"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     id="stock"
                                     margin="normal"
@@ -167,7 +167,7 @@ const ProductCreate = () =>{
                                 <TextField
                                     {...field}
                                     label="Price"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     id="price"
                                     margin="normal"
@@ -195,7 +195,7 @@ const ProductCreate = () =>{
                             render={({ field }) => (
                                 <TextField
                                     label="Image"
-                                    variant="outlined"
+                                    variant="filled"
                                     fullWidth
                                     id="image"
                                     type="file"
@@ -221,7 +221,7 @@ const ProductCreate = () =>{
                  variant="contained" color="primary" onClick={()=>{
                     navigate(-1)
                  }}>
-                    Back
+                    Retour
                 </Button>
             </form>
         </CardContent>

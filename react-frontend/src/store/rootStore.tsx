@@ -4,6 +4,8 @@ import CustomerStore from './customerStore';
 import DialogStore from './dialogStore';
 import ProductStore from './productStore';
 import AlertStore from './alertStore';
+import OrdertStore from './orderStore';
+import OrderStore from './orderStore';
 
 if(import.meta.env.NODE_ENV === "development"){
 
@@ -21,6 +23,7 @@ export interface IRootStore{
     dialogStore: DialogStore;
     productStore: ProductStore;
     alertStore: AlertStore;
+    orderStore: OrderStore;
 }
 
 export  class RootStore implements IRootStore{
@@ -30,6 +33,7 @@ export  class RootStore implements IRootStore{
     dialogStore: DialogStore;
     productStore: ProductStore;
     alertStore: AlertStore;
+    orderStore: OrderStore;
     constructor() {
         console.log("RootStore");
         this.authStore = new AuthStore(this);
@@ -37,6 +41,7 @@ export  class RootStore implements IRootStore{
         this.dialogStore = new DialogStore(this);
         this.productStore = new ProductStore(this);
         this.alertStore = new AlertStore(this);
+        this.orderStore = new OrderStore(this);
     }
     public handleError = (errorCode: number | null = null, errorMessage: string, errorData: any) =>{
         console.error('Error Data:', errorData);

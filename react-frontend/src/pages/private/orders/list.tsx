@@ -5,15 +5,17 @@ import { useStore } from '../../../store/rootStore';
 import { observer } from 'mobx-react-lite';
 import { Box, Button, Card, CardContent, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import creatForm from './creatForm';
+
+
 const paginationModel = { page: 0, pageSize: 5 };
 
-const ProductList = () =>{
+const OrderList = () =>{
 
-  const {rootStore: {productStore}} = useStore();
+  const {rootStore: {orderStore}} = useStore();
+
   const initTable = async () =>{
     try {
-        const resData = await productStore.productLists();
+        const resData = await orderStore.orderLists();
     } catch (error) {
 
         console.log(error)
@@ -21,7 +23,6 @@ const ProductList = () =>{
   }
 
   React.useEffect(()=>{
-
         initTable();
   },[])
 
@@ -30,14 +31,14 @@ const ProductList = () =>{
     <Card sx={{ width: '100%'}}>
     <CardContent>
     <Typography variant='h2'
-     className='text-left'>Produits</Typography>
+     className='text-left'>Commandes</Typography>
       <Box display="flex" justifyContent="flex-start" marginBottom={2}>
         <Button variant="contained" component={Link} to={'create'}>Creer</Button>
       </Box>
       <Paper sx={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={productStore.rowData}
-          columns={productStore.columns}
+          rows={orderStore.rowData}
+          columns={orderStore.columns}
           initialState={{ pagination: { paginationModel } }}
           pageSizeOptions={[5, 10]}
           checkboxSelection
@@ -48,4 +49,4 @@ const ProductList = () =>{
   </Card>
   );
 }
-export default observer(ProductList)
+export default observer(OrderList)

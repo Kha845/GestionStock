@@ -153,7 +153,6 @@ getData = async (id: number | string ) =>{
 
         if (data.error) {
             this.rootStore.handleError(response.status, data.message, data);
-
             return Promise.reject(new Error(data.message));
 
         } else {
@@ -237,5 +236,32 @@ updateData = async (id: number | string, postData: any) => {
             }
         )
        
+    }
+    getlist = async (postData: any) =>{
+        try {
+            
+            const response = await axios.post(this.BASE_URL + '/getList', postData,{
+                headers: {
+                    'Authorization': `Bearer ${this.rootStore.authStore.token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log("HTTP Status:", response.status);
+    
+            const data = response.data;
+            console.log(data)
+            if (data.error) {
+
+                this.rootStore.handleError(response.status, data.message, data);
+    
+                return Promise.reject(new Error(data.message));
+    
+            } else {
+                return Promise.resolve(data.data.customers);
+            }
+    
+        } catch (error: any) {
+            this.rootStore.handleError(419,'something went wrong',error)
+        }
     }
 }
