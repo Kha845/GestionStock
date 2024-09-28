@@ -243,21 +243,28 @@ class ProductController extends Controller
         }
     }
     public function getList(Request $request){
-        try{
+        try {
+            // Initialisation de la requête
             $query = DB::table('products');
 
-            $query->where(function($query) use ($request) {
-            $search = '%' . $request->search . '%';
-            $query->orWhere('name', 'like', $search);
-            });
+            // Vérification si un terme de recherche est présent
+            if ($request->has('search') && !empty($request->search)) {
+                $search = '%' . $request->search . '%';
+                $query->where(function($query) use ($search) {
+                    $query->orWhere('name', 'like', $search);
+                });
+            }
 
+            // Récupération des données avec une limite de 20 produits
             $data['products'] = $query->orderBy('name')
-                          ->limit(20)
-                          ->get(['id', 'name as Label', 'stock', 'price']);
+                ->limit(20)
+                ->get(['id', 'name as label', 'stock', 'price']);
 
-             return $this->sendResponse("List fetched successfully", $data, 200);
-        }catch(\Exception $e){
-            DB::rollBack();
+            // Retour de la réponse
+            return $this->sendResponse("List fetched successfully", $data, 200);
+
+        } catch (\Exception $e) {
+            // Gestion de l'erreur
             return $this->handleException($e);
         }
     }

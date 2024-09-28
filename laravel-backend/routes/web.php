@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +59,13 @@ Route::group(['middleware'=>'auth'], function($routes){
         Route::post('/getList',[ProductController::class,'getList']);
 
     });
+    //la gestion des commandes
+    Route::group(['prefix'=>'v1/orders','middleware'=>'auth'],function($routes){
+        Route::get('/list',[OrderController::class,'index']);
+        Route::post('/',[OrderController::class,'store']);
+        Route::get('/{id}',[OrderController::class,'show']);
 
+    });
 });
 
 
